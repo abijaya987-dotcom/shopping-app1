@@ -22,6 +22,27 @@ Aplikasi ini memungkinkan pengguna untuk:
 - **Anggota 3 (Frontend UI & Dokumentasi)**  
 `[Dimas] - [240030101]`
 
+- **Infrastruktur & Auth**
+  - database.php
+  - database-schema.sql
+  - register.php
+  - login.php
+  - logout.php
+  - auth-cehk.php
+
+- **Backend Logic & Quality Control**
+  - items.php
+  - add-item.php
+  - edit-item.php
+  - Testing & Debugging
+
+- **Frontend UI & Dokumentasi**
+  - dashboard.php
+  - header.php
+  - footer.php
+  - Styling (Bootstrap 5)
+  - README.md
+  
 ---
 
 ## Lingkungan Pengembangan
@@ -193,3 +214,4 @@ http://localhost/shopping-app/login.php
 
 
 - Lakukan registrasi akun baru untuk mulai menggunakan aplikasi
+
