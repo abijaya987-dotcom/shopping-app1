@@ -50,6 +50,18 @@ Aplikasi ini dikembangkan menggunakan teknologi berikut:
 
 ---
 
+## Fitur Keamanan (Security)
+Aplikasi ini diimplementasikan dengan standar keamanan Back-End sebagai berikut:
+
+1. **Anti-SQL Injection**: Semua query database menggunakan *Prepared Statements* dan *Parameter Binding* melalui PDO untuk mencegah manipulasi query.
+2. **Password Security**: Menggunakan fungsi `password_hash()` bawaan PHP untuk enkripsi satu arah. Tidak ada password yang disimpan dalam bentuk teks biasa.
+3. **Session Management**: 
+   - Memastikan sesi unik untuk setiap pengguna.
+   - Fitur *Session Timeout* yang otomatis mengeluarkan pengguna jika tidak ada aktivitas dalam 30 menit.
+4. **Data Privacy**: Query database selalu menyertakan `WHERE user_id = :id`, sehingga pengguna hanya bisa melihat data milik mereka sendiri.
+
+---
+
 ### 2. Manajemen Tugas (Daftar Belanja)
 - **Create (Tambah)**  
   Menambahkan barang belanja dengan detail:
@@ -99,6 +111,56 @@ todo-list/
 
 
 ```
+---
+
+## Skema Database (database-schema.sql)
+
+Proyek ini menggunakan database relasional MySQL dengan struktur sebagai berikut. Anda dapat mengimpor kode ini melalui tab SQL di phpMyAdmin.
+
+```sql
+-- 1. Membuat Database
+CREATE DATABASE IF NOT EXISTS shopping_app;
+USE shopping_app;
+
+-- 2. Membuat Tabel Users
+-- Digunakan untuk menyimpan kredensial pengguna
+CREATE TABLE IF NOT EXISTS users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(50) NOT NULL UNIQUE,
+    email VARCHAR(100) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL, -- Menyimpan hash bcrypt
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB;
+
+-- 3. Membuat Tabel Shopping Items
+-- Berisi daftar belanja yang terhubung ke masing-masing pengguna
+CREATE TABLE IF NOT EXISTS shopping_items (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    item_name VARCHAR(255) NOT NULL,
+    quantity INT DEFAULT 1,
+    category ENUM('Makanan', 'Minuman', 'Kebutuhan Rumah', 'Elektronik', 'Lainnya') DEFAULT 'Lainnya',
+    is_purchased TINYINT(1) DEFAULT 0,
+    notes TEXT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    
+    -- Menjamin integritas data: Jika user dihapus, item belanjanya juga terhapus
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+) ENGINE=InnoDB;
+
+```
+
+Aplikasi ini menggunakan dua tabel utama dengan relasi *One-to-Many*:
+1. **Tabel `users`**: Menyimpan data akun (ID, Username, Email, Password Hash).
+2. **Tabel `shopping_items`**: Menyimpan detail barang belanjaan yang terhubung ke `user_id` tertentu.
+
+**Fitur Database:**
+- **Foreign Key**: Menghubungkan item dengan pemiliknya.
+- **On Delete Cascade**: Menjamin integritas data (jika user dihapus, listnya hilang).
+- **Enum Category**: Memberikan pilihan kategori belanja yang terstruktur.
+
+---
+
 ## Cara Instalasi dan Menjalankan Aplikasi
 
 ### 1. Persiapan Lingkungan
@@ -128,5 +190,6 @@ config/database.php
 ### 4. Menjalankan Aplikasi
 - Akses aplikasi melalui browser:
 http://localhost/shopping-app/login.php
+
 
 - Lakukan registrasi akun baru untuk mulai menggunakan aplikasi
