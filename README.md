@@ -13,35 +13,11 @@ Aplikasi ini memungkinkan pengguna untuk:
 
 ## Daftar Anggota Kelompok
 
-- **Anggota 1 (Infrastruktur & Auth)**  
-`[AbiJaya] - [240030076]`
-
-- **Anggota 2 (Backend Logic & Quality Control)**  
-`[Dek Dwi] - [240030065]`
-
-- **Anggota 3 (Frontend UI & Dokumentasi)**  
-`[Dimas] - [240030101]`
-
-- **Infrastruktur & Auth**
-  - database.php
-  - database-schema.sql
-  - register.php
-  - login.php
-  - logout.php
-  - auth-cehk.php
-
-- **Backend Logic & Quality Control**
-  - items.php
-  - add-item.php
-  - edit-item.php
-  - Testing & Debugging
-
-- **Frontend UI & Dokumentasi**
-  - dashboard.php
-  - header.php
-  - footer.php
-  - Styling (Bootstrap 5)
-  - README.md
+| Nama                                   | Nim         | Akun Github         | Tugas                                                                                                               |
+| -------------------------------------- | ----------- | ------------------  | ------------------------------------------------------------------------------------------------------------------- |
+| **I Gede Adhika Satya Abijaya**        | 240030076   | abijaya987-dotcom   | Membuat Infrastruktur & Auth, database.php, database-schema.sql, register.php, login.php, logout.php, auth-cehk.php |
+| **I Made Ngurah Dwi Cahyana Putra**    | 240030065   | gedesentana61-cloud | Membuat Backend Logic & Quality Control, items.php, add-item.php, edit-item.php, Testing & Debugging                | 
+| **I Gusti Ngurah Dimas Satya Adnyana** | 240030101   | dimasakun803-arch   | Membuat Frontend UI & Dokumentasi, dashboard.php, header.php, footer.php, Styling (Bootstrap 5), README.md          |
   
 ---
 
@@ -214,5 +190,6 @@ http://localhost/shopping-app/login.php
 
 
 - Lakukan registrasi akun baru untuk mulai menggunakan aplikasi
+
 
 
